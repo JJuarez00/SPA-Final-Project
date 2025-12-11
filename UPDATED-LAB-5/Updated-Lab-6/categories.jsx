@@ -45,23 +45,24 @@ const Categories = () => {
                         <div className="category-row category-row-header">
                             <div>ID</div>
                             <div>Name</div>
-                            <div>Description</div>
-                            <div>Videogames</div>
                         </div>
                         {categories.data && categories.data.map((category) => (
-                            <div key={category.number} className="category-row">
+                            <div key={category.category_id} className="category-row">
+                                <div>
+                                    <NavLink
+                                        className={({isActive}) => isActive ? "active" : ""}
+                                        to={`/categories/${category.category_id}`}>
+                                        {category.category_id}
+                                    </NavLink>
+                                </div>
                                 <div>{category.category_id}</div>
                                 <div>{category.category_name}</div>
                                 <div>{category.description}</div>
-                                <div>
-                                    {category.videogames.length > 0
-                                        ? category.videogames.map((game) => game.title).join(", ")
-                                        : "No games"}
-                                </div>
                             </div>
                         ))}
                     </div>}
             </div>
+            <Outlet/>
 
 
         </>
